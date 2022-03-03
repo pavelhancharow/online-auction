@@ -1,14 +1,21 @@
-import express from 'express';
+import mongoose from 'mongoose';
+import { app } from './app';
 import config from './common/config';
 
-const app = express();
+const { PORT, MONGO_URL } = config;
 
-const { PORT } = config;
+const start = async () => {
+  try {
+    await mongoose.connect(MONGO_URL);
+    app.listen(PORT, () => {
+      process.stdout.write(
+        `Server is running on PORT: \x1b[32m${PORT}\x1b[0m\n`
+      );
+    });
+  } catch (error) {
+    process.stderr.write(`${error}`);
+    process.exit(1);
+  }
+};
 
-app.get('/', (_, res) => {
-  res.send('GET!');
-});
-
-app.listen(PORT, () => {
-  process.stdout.write(`Server is running on PORT: \x1b[32m${PORT}\x1b[0m\n`);
-});
+start();
