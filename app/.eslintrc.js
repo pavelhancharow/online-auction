@@ -47,6 +47,7 @@ module.exports = {
       },
     ],
     'max-len': ['warn', { code: 80 }],
+    'react/no-unescaped-entities': 'off',
   },
   settings: {
     react: {
