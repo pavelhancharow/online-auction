@@ -4,7 +4,7 @@
   "description": "REST service for online auction app",
   "main": "src/server.ts",
   "scripts": {
-    "start:dev": "nodemon --exec npx ts-node src/server.ts",
+    "start:dev": "nodemon ./src/server.ts",
     "start:prod": "npx tsc && nodemon --exec npx ts-node dist/server.js",
     "lint": "eslint --ext .js,.ts --fix src/",
     "format": "prettier --write ."
