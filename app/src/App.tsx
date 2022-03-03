@@ -1,6 +1,11 @@
 import { FC } from 'react';
-import { Content } from './components/Content';
+import { BrowserRouter } from 'react-router-dom';
+import { Modal } from './pages/Modal/Modal';
 
 export const App: FC = (): JSX.Element => {
-  return <Content />;
+  return (
+    <BrowserRouter>
+      <Modal />
+    </BrowserRouter>
+  );
 };
