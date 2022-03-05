@@ -1,9 +1,12 @@
 import express from 'express';
+import cors from 'cors';
+import { authRouter } from './authRouter';
+import { corsOptions } from './common/cors';
 
 export const app = express();
 
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
-app.get('/', async (_, res) => {
-  await res.json();
-});
+app.use('/auth', authRouter);
