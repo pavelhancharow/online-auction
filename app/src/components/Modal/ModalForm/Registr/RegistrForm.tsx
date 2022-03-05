@@ -3,6 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { FormBox } from 'src/components/Modal/ModalForm/Form/FormStyles';
 import { MyButton } from 'src/components/UI/MyButton/MyButton';
 import { RegistFormInputs } from 'src/data/FormInputs';
+import { $host } from 'src/http';
 import { IRegistrForm } from 'src/models/IForms';
 import { RegistrInput } from './RegistrInput';
 
@@ -17,9 +18,15 @@ export const RegistForm: FC = (): JSX.Element => {
     mode: 'onBlur',
   });
 
-  const { handleSubmit, watch } = methods;
+  const { handleSubmit } = methods;
 
-  const onSubmit = (data: IRegistrForm) => console.log(data);
+  const onSubmit = async (data: IRegistrForm) => {
+    await $host.post('auth/registration', {
+      username: data.name,
+      password: data.password,
+      email: data.email,
+    });
+  };
 
   return (
     <FormProvider {...methods}>
