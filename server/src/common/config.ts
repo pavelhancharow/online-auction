@@ -6,15 +6,18 @@ dotenv.config({ path: join(__dirname, '../../.env') });
 
 interface IConfig {
   PORT: string;
-  MONGO_URL: string;
+  MONGO_URI: string;
+  SECRET_KEY: string;
 }
 
 enum Config {
-  PORT = '3000',
-  MONGO_URL = '*****',
+  PORT = '5000',
+  MONGO_URI = '*****',
+  SECRET_KEY = 'SECRET_KEY_RANDOM',
 }
 
 export default <IConfig>{
   PORT: env.PORT || Config.PORT,
-  MONGO_URL: env.MONGO_URL || Config.MONGO_URL,
+  MONGO_URI: env.MONGO_URI || Config.MONGO_URI,
+  SECRET_KEY: env.SECRET_KEY || Config.SECRET_KEY,
 };
