@@ -4,3 +4,7 @@ export interface IUser {
   password: string;
   roles: string[];
 }
+
+export interface IRole {
+  value: string;
+}
