@@ -1,12 +1,12 @@
 import { FC, ReactNode } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { ILoginForm } from 'src/models/IForms';
-import { InputCheckboxType } from 'src/models/InputTypes';
+import { CheckboxIdType } from 'src/models/InputTypes';
 import { MyCheckboxBox } from './MyCheckboxStyle';
 
 interface MyCheckboxProps {
   children: ReactNode;
-  id: InputCheckboxType;
+  id: CheckboxIdType;
   register: UseFormRegister<ILoginForm>;
 }
 
