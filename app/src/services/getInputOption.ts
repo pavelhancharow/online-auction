@@ -7,7 +7,7 @@ import { InputIdType } from 'src/models/InputTypes';
 
 export function getInputOption(value: InputIdType) {
   switch (value) {
-    case 'name':
+    case 'username':
       return nameOptions;
     case 'email':
       return emailOptions;

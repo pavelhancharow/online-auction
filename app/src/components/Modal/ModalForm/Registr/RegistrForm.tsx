@@ -10,7 +10,7 @@ import { RegistrInput } from './RegistrInput';
 export const RegistForm: FC = (): JSX.Element => {
   const methods = useForm<IRegistrForm>({
     defaultValues: {
-      name: '',
+      username: '',
       email: '',
       password: '',
       confirm: '',
@@ -21,11 +21,7 @@ export const RegistForm: FC = (): JSX.Element => {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: IRegistrForm) => {
-    await $host.post('auth/registration', {
-      username: data.name,
-      password: data.password,
-      email: data.email,
-    });
+    await $host.post('auth/registration', { ...data });
   };
 
   return (
