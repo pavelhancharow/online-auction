@@ -29,6 +29,6 @@ export const passwordOptions: RegisterOptions = {
   },
   minLength: {
     value: 8,
-    message: 'The minimum password length is at least 8 characters.',
+    message: 'The minimum password length is at least 8 characters',
   },
 };
