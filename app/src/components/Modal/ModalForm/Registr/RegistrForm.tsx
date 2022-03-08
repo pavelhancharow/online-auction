@@ -1,16 +1,22 @@
 import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { FormBox } from 'src/components/Modal/ModalForm/Form/FormStyles';
 import { MyButton } from 'src/components/UI/MyButton/MyButton';
 import { RegistFormInputs } from 'src/data/FormInputs';
-import { $host } from 'src/http';
+import { useAppDispatch } from 'src/hooks/redux';
 import { IRegistrForm } from 'src/models/IForms';
+import { registrUser } from 'src/store/reducers/UserSlice/actionCreator';
 import { RegistrInput } from './RegistrInput';
 
 export const RegistForm: FC = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const methods = useForm<IRegistrForm>({
     defaultValues: {
-      username: '',
+      firstname: '',
+      lastname: '',
+      phone: '',
       email: '',
       password: '',
       confirm: '',
@@ -21,7 +27,8 @@ export const RegistForm: FC = (): JSX.Element => {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: IRegistrForm) => {
-    await $host.post('auth/registration', { ...data });
+    await dispatch(registrUser(data));
+    navigate('/');
   };
 
   return (

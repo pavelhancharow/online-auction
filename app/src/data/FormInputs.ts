@@ -20,7 +20,9 @@ export const ResetFormInputs: IFormInput[] = [
 ];
 
 export const RegistFormInputs: IFormInput[] = [
-  { id: 'username', type: 'text', placeholder: 'Full name' },
+  { id: 'firstname', type: 'text', placeholder: 'First name' },
+  { id: 'lastname', type: 'text', placeholder: 'Last name' },
+  { id: 'phone', type: 'tel', placeholder: 'Phone' },
   { id: 'email', type: 'email', placeholder: 'E-mail address' },
   { id: 'password', type: 'password', placeholder: 'Password' },
   {
