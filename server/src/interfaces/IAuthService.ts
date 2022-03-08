@@ -1,6 +1,8 @@
 export interface IBodyRegistr {
   email: string;
-  username: string;
+  firstname: string;
+  lastname: string;
+  phone: string;
   password: string;
 }
 

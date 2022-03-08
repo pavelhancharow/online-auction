@@ -1,4 +1,16 @@
-import { email, password, username } from '../validation/requests';
+import {
+  email,
+  password,
+  firstname,
+  lastname,
+  phone,
+} from '../validation/requests';
 
-export const checkRegistration = () => [username, password, email];
+export const checkRegistration = () => [
+  firstname,
+  lastname,
+  phone,
+  password,
+  email,
+];
 export const checkLogin = () => [password, email];

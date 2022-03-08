@@ -1,9 +1,18 @@
 import { check, ValidationChain } from 'express-validator';
 
-export const username: ValidationChain = check(
-  'username',
-  'Username cannot be empty'
+export const firstname: ValidationChain = check(
+  'firstname',
+  'First name cannot be empty'
 ).notEmpty();
+
+export const lastname: ValidationChain = check(
+  'lastname',
+  'Last name cannot be empty'
+).notEmpty();
+
+export const phone: ValidationChain = check('phone', 'Phone not correct')
+  .notEmpty()
+  .isNumeric();
 
 export const password: ValidationChain = check(
   'password',

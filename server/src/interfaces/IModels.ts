@@ -1,7 +1,9 @@
 import { Document } from 'mongoose';
 
 export interface IUser extends Document {
-  username: string;
+  firstname: string;
+  lastname: string;
+  phone: string;
   email: string;
   password: string;
   roles: string[];

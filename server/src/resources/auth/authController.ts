@@ -35,9 +35,12 @@ export const login = async (
 
     const user = await loginService(req.body);
     const { token } = user;
-    const { _id, username, email, roles } = user.user;
+    const { _id, firstname, lastname, phone, email, roles } = user.user;
 
-    res.status(200).send({ token, user: { id: _id, username, email, roles } });
+    res.status(200).send({
+      token,
+      user: { id: _id, firstname, lastname, phone, email, roles },
+    });
   } catch (error) {
     next(error);
   }
@@ -51,9 +54,12 @@ export const auth = async (
   try {
     const user = await authService(req.body.user.id);
     const { token } = user;
-    const { _id, username, email, roles } = user.user;
+    const { _id, firstname, lastname, phone, email, roles } = user.user;
 
-    res.status(200).send({ token, user: { id: _id, username, email, roles } });
+    res.status(200).send({
+      token,
+      user: { id: _id, firstname, lastname, phone, email, roles },
+    });
   } catch (error) {
     next(error);
   }

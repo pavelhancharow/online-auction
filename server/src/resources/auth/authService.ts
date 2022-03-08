@@ -6,7 +6,7 @@ import { IUser } from '../../interfaces/IModels';
 import { ErrorException, ErrorCode } from '../../error';
 
 export const registrationService = async (body: IBodyRegistr) => {
-  const { email, password, username } = body;
+  const { email, password, firstname, lastname, phone } = body;
 
   const candidate = await User.findOne({ email });
   if (candidate) throw new ErrorException(ErrorCode.DuplicateEntityError);
@@ -17,7 +17,9 @@ export const registrationService = async (body: IBodyRegistr) => {
   if (!userRole) throw new ErrorException(ErrorCode.RoleEntityError);
 
   const user: IUser = new User({
-    username,
+    firstname,
+    lastname,
+    phone,
     email,
     password: hashPassword,
     roles: [userRole.value],
