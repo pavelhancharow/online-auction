@@ -22,4 +22,10 @@ export const ModalFormBox = styled(FlexColumn)`
       color: ${blue};
     }
   }
+
+  b {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 700;
+  }
 `;
