@@ -12,8 +12,8 @@ export const UserAccount: FC = (): JSX.Element => {
       <h2>Hello {firstname}!</h2>
       <p>First Name: {firstname}</p>
       <p>Last Name: {lastname}</p>
-      <p>Mopile phone: {phone}</p>
-      <p>Your Email: {email}</p>
+      <p>Mobile phone: {phone}</p>
+      <p>Your E-mail: {email}</p>
       <p>Your ID: {id}</p>
     </ModalFormBox>
   );
