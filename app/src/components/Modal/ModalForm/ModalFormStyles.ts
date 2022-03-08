@@ -23,7 +23,7 @@ export const ModalFormBox = styled(FlexColumn)`
     }
   }
 
-  b {
+  p {
     margin-bottom: 20px;
     font-size: 16px;
     font-weight: 700;

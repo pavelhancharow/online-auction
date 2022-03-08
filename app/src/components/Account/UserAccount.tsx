@@ -10,11 +10,11 @@ export const UserAccount: FC = (): JSX.Element => {
   return (
     <ModalFormBox>
       <h2>Hello {firstname}!</h2>
-      <b>First Name: {firstname}</b>
-      <b>Last Name: {lastname}</b>
-      <b>Mobile phone: {phone}</b>
-      <b>Your Email: {email}</b>
-      <b>Your ID: {id}</b>
+      <p>First Name: {firstname}</p>
+      <p>Last Name: {lastname}</p>
+      <p>Mopile phone: {phone}</p>
+      <p>Your Email: {email}</p>
+      <p>Your ID: {id}</p>
     </ModalFormBox>
   );
 };
