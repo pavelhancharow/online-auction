@@ -8,20 +8,25 @@ import { FormBox } from 'src/components/Modal/ModalForm/Form/FormStyles';
 import { LoginInput } from './LoginInput';
 import { LoginContainer } from './LoginStyles';
 import { ILoginForm } from 'src/models/IForms';
+import { setUser } from 'src/store/reducers/UserSlice/actionCreator';
+import { useAppDispatch } from 'src/hooks/redux';
 
 export const LoginForm: FC = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const methods = useForm<ILoginForm>({
-    defaultValues: {
-      email: '',
-      password: '',
-      remember: false,
-    },
+    defaultValues: { email: '', password: '', remember: false },
     mode: 'onBlur',
   });
 
   const { handleSubmit, register } = methods;
 
-  const onSubmit = (data: ILoginForm) => console.log(data);
+  const onSubmit = async (data: ILoginForm) => {
+    const { password, email, remember } = data;
+
+    if (password && remember !== undefined) {
+      await dispatch(setUser({ password, email, remember }));
+    }
+  };
 
   return (
     <FormProvider {...methods}>
