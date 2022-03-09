@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { ModalFormBox } from '../ModalFormStyles';
+import { ModalFormBox } from '../../../UI/MyModal/ModalFormStyles';
 import { LoginForm } from './LoginForm';
 
 export const Login: FC = (): JSX.Element => {

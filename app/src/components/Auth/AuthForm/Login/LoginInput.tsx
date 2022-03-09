@@ -1,22 +1,21 @@
 import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { FormInput } from 'src/components/Modal/ModalForm/Form/FormInput';
-import { IRegistrForm } from 'src/models/IForms';
+import { FormInput } from 'src/components/Form/FormInput';
+import { ILoginForm } from 'src/models/IForms';
 import { InputIdType, InputType } from 'src/models/InputTypes';
 
-interface RegistrInputProps {
+interface LoginInputProps {
   id: InputIdType;
   type: InputType;
   placeholder: string;
 }
 
-export const RegistrInput: FC<RegistrInputProps> = ({
+export const LoginInput: FC<LoginInputProps> = ({
   id,
   ...props
 }): JSX.Element => {
-  const { register, formState, watch } = useFormContext<IRegistrForm>();
+  const { register, formState } = useFormContext<ILoginForm>();
   const { errors, touchedFields } = formState;
-  const password = watch('password');
 
   return (
     <FormInput
@@ -24,7 +23,6 @@ export const RegistrInput: FC<RegistrInputProps> = ({
       register={register}
       errors={errors}
       touchedFields={touchedFields}
-      password={password}
       {...props}
     />
   );

@@ -1,16 +1,16 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { UserNav } from 'src/components/Account/UserNav';
-import { privateUserRoutes } from 'src/routes';
-import { ModalBox, ModalWrap } from '../Modal/ModalStyles';
+import { AuthInfo } from 'src/components/Auth/AuthInfo';
+import { publicRoutes } from 'src/routes';
+import { ModalWrap, ModalBox } from '../components/UI/MyModal/ModalStyles';
 
-export const User: FC = (): JSX.Element => {
+export const Auth: FC = (): JSX.Element => {
   return (
     <ModalWrap>
       <ModalBox>
-        <UserNav />
+        <AuthInfo />
         <Routes>
-          {privateUserRoutes.map((r) => (
+          {publicRoutes.map((r) => (
             <Route path={r.path} element={r.element} key={r.path} />
           ))}
         </Routes>

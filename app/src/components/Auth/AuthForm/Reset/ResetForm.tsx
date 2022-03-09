@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { FormBox } from 'src/components/Modal/ModalForm/Form/FormStyles';
+import { FormBox } from 'src/components/Form/FormStyles';
 import { MyButton } from 'src/components/UI/MyButton/MyButton';
 import { ResetFormInputs } from 'src/data/FormInputs';
 import { IResetForm } from 'src/models/IForms';

@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { MyButton } from '../../UI/MyButton/MyButton';
-import { ModalInfoBox, ModalInfoBtns } from './ModalInfoStyles';
+import { MyButton } from '../UI/MyButton/MyButton';
+import { ModalInfoBox, ModalInfoBtns } from '../UI/MyModal/ModalInfoStyles';
 
-export const ModalInfo: FC = (): JSX.Element => {
+export const AuthInfo: FC = (): JSX.Element => {
   return (
     <ModalInfoBox>
       <h2>Online Auction</h2>

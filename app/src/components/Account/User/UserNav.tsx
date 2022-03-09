@@ -2,11 +2,8 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from 'src/hooks/redux';
 import { logOut } from 'src/store/reducers/UserSlice/actionCreator';
-import {
-  ModalInfoBox,
-  ModalInfoBtns,
-} from '../Modal/ModalInfo/ModalInfoStyles';
-import { MyButton } from '../UI/MyButton/MyButton';
+import { ModalInfoBox, ModalInfoBtns } from '../../UI/MyModal/ModalInfoStyles';
+import { MyButton } from '../../UI/MyButton/MyButton';
 
 export const UserNav: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();

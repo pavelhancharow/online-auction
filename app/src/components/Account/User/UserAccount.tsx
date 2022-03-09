@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useAppSelector } from 'src/hooks/redux';
-import { ModalFormBox } from '../Modal/ModalForm/ModalFormStyles';
+import { ModalFormBox } from '../../UI/MyModal/ModalFormStyles';
 
 export const UserAccount: FC = (): JSX.Element => {
   const {

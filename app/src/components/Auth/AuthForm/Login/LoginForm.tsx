@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { MyButton } from 'src/components/UI/MyButton/MyButton';
 import { MyCheckbox } from 'src/components/UI/MyCheckbox/MyCheckbox';
 import { LoginFormInputs } from 'src/data/FormInputs';
-import { FormBox } from 'src/components/Modal/ModalForm/Form/FormStyles';
+import { FormBox } from 'src/components/Form/FormStyles';
 import { LoginInput } from './LoginInput';
 import { LoginContainer } from './LoginStyles';
 import { ILoginForm } from 'src/models/IForms';
@@ -23,7 +23,7 @@ export const LoginForm: FC = (): JSX.Element => {
   const onSubmit = async (data: ILoginForm) => {
     const { password, email, remember } = data;
 
-    if (password && remember !== undefined) {
+    if (email && password && remember !== undefined) {
       await dispatch(setUser({ password, email, remember }));
     }
   };

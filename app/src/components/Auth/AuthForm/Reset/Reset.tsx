@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ModalFormBox } from '../ModalFormStyles';
+import { ModalFormBox } from '../../../UI/MyModal/ModalFormStyles';
 import { ResetForm } from './ResetForm';
 
 export const Reset: FC = (): JSX.Element => {

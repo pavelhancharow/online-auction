@@ -6,9 +6,9 @@ import {
   auth,
   clearMessages,
 } from 'src/store/reducers/UserSlice/actionCreator';
-import { Modal } from './pages/Modal/Modal';
-import { User } from './pages/User/User';
-import { Admin } from './pages/Admin/Admin';
+import { Auth } from './pages/Auth';
+import { User } from './pages/User';
+import { Admin } from './pages/Admin';
 
 export const App: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -45,7 +45,7 @@ export const App: FC = (): JSX.Element => {
     ) : currentUser.roles[0] === 'ADMIN' ? (
       <Admin />
     ) : (
-      <Modal />
+      <Auth />
     );
   };
 

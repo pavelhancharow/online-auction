@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { FormBox } from 'src/components/Modal/ModalForm/Form/FormStyles';
+import { FormBox } from 'src/components/Form/FormStyles';
 import { MyButton } from 'src/components/UI/MyButton/MyButton';
 import { RegistFormInputs } from 'src/data/FormInputs';
 import { useAppDispatch } from 'src/hooks/redux';
