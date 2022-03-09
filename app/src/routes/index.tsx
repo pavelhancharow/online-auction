@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
-import { UserAccount } from 'src/components/Account/UserAccount';
-import { Login, Registr, Reset } from 'src/components/Modal/ModalForm';
+import { AdminAccount, UserAccount } from 'src/components/Account';
+import { Login, Registr, Reset } from 'src/components/Auth/AuthForm';
 
 export const publicRoutes = [
   { path: '/', element: <Login /> },
@@ -12,4 +12,9 @@ export const publicRoutes = [
 export const privateUserRoutes = [
   { path: '/account', element: <UserAccount /> },
   { path: '*', element: <Navigate to="/account" /> },
+];
+
+export const privateAdminRoutes = [
+  { path: '/admin', element: <AdminAccount /> },
+  { path: '*', element: <Navigate to="/admin" /> },
 ];

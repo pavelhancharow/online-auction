@@ -1,9 +1,21 @@
-export type InputType = 'text' | 'email' | 'password' | 'tel';
 export type CheckboxIdType = 'remember';
+
+export type InputType =
+  | 'text'
+  | 'email'
+  | 'password'
+  | 'tel'
+  | 'number'
+  | 'file'
+  | 'datetime-local';
+
 export type InputIdType =
   | 'email'
   | 'password'
   | 'firstname'
   | 'lastname'
   | 'phone'
-  | 'confirm';
+  | 'confirm'
+  | 'title'
+  | 'description'
+  | 'rate';

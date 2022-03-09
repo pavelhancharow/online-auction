@@ -31,3 +31,9 @@ export const RegistFormInputs: IFormInput[] = [
     placeholder: 'Confirm password',
   },
 ];
+
+export const AdminFormInputs: IFormInput[] = [
+  { id: 'title', type: 'text', placeholder: 'Lot Title' },
+  { id: 'description', type: 'text', placeholder: 'Lot Description' },
+  { id: 'rate', type: 'number', placeholder: 'Starting Rate USD' },
+];

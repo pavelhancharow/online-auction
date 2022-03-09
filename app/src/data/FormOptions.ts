@@ -11,6 +11,13 @@ export const nameOptions: RegisterOptions = {
   },
 };
 
+export const textOptions: RegisterOptions = {
+  required: {
+    value: true,
+    message: 'This field is required',
+  },
+};
+
 export const phoneOptions: RegisterOptions = {
   required: {
     value: true,
@@ -18,6 +25,17 @@ export const phoneOptions: RegisterOptions = {
   },
   pattern: {
     value: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
+    message: 'Valid formats: (XXX) XXX-XXXX / XXXXXXXXXX',
+  },
+};
+
+export const rateOptions: RegisterOptions = {
+  required: {
+    value: true,
+    message: 'This field is required',
+  },
+  pattern: {
+    value: /^[0-9]+$/im,
     message: 'Valid formats: (XXX) XXX-XXXX / XXXXXXXXXX',
   },
 };
