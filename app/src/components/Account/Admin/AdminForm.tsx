@@ -4,12 +4,12 @@ import { FormBox } from 'src/components/Form/FormStyles';
 import { MyButton } from 'src/components/UI/MyButton/MyButton';
 import { AdminFormInputs } from 'src/data/FormInputs';
 import { IAdminForm } from 'src/models/IForms';
-import { setLocalTime } from 'src/services/setLocalTime';
+import { getLocalTime } from 'src/services/getLocalTime';
 import { AdminFieldset } from './AdminFieldset';
 import { AdminInput } from './AdminInput';
 
 export const AdminForm: FC = (): JSX.Element => {
-  const time = useMemo(() => setLocalTime(), []);
+  const time = useMemo(() => getLocalTime(), []);
   const methods = useForm<IAdminForm>({
     defaultValues: {
       title: '',
