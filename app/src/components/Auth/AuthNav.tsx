@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { MyButton } from '../UI/MyButton/MyButton';
 import { ModalInfoBox, ModalInfoBtns } from '../UI/MyModal/ModalInfoStyles';
 
-export const AuthInfo: FC = (): JSX.Element => {
+export const AuthNav: FC = (): JSX.Element => {
   return (
     <ModalInfoBox>
       <h2>Online Auction</h2>
