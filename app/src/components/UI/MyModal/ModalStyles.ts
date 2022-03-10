@@ -17,7 +17,7 @@ export const ModalBox = styled(FlexBox)`
   left: 50%;
   transform: translate(-50%, -50%);
   justify-content: space-between;
-  height: max-content;
+  height: 600px;
   max-width: 61.25rem;
   box-shadow: 0 0 20px 3px ${dark}80;
   background: ${body};
