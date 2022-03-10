@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { MyFieldset } from 'src/components/UI/MyFieldset/MyFieldset';
 import { IAdminForm } from 'src/models/IForms';
-import { AdminFieldsetBox } from './AdminStyles';
+import { AdminFieldsetBox } from '../AdminStyles';
 
 interface AdminFieldsetProps {
   time: string;
@@ -21,10 +21,10 @@ export const AdminFieldset: FC<AdminFieldsetProps> = ({
         time={time}
         register={register}
       >
-        Auction Duration:
+        Auction Duration:{' '}
       </MyFieldset>
       <MyFieldset id="img" type="file" register={register}>
-        Lot Image:
+        Lot Image:{' '}
       </MyFieldset>
     </AdminFieldsetBox>
   );

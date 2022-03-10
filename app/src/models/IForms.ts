@@ -20,7 +20,7 @@ export interface IResetForm {
 export interface IAdminForm {
   title?: string;
   description?: string;
-  img?: string;
+  img?: FileList | string;
   duration?: string;
   rate?: string;
 }

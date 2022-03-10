@@ -36,7 +36,7 @@ export const rateOptions: RegisterOptions = {
   },
   pattern: {
     value: /^[0-9]+$/im,
-    message: 'Valid formats: (XXX) XXX-XXXX / XXXXXXXXXX',
+    message: 'Only numbers',
   },
 };
 

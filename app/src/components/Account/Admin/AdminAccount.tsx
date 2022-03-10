@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { ModalFormBox } from 'src/components/UI/MyModal/ModalFormStyles';
-import { AdminForm } from './AdminForm';
+import { AdminForm } from './AdminForm/AdminForm';
 
 export const AdminAccount: FC = (): JSX.Element => {
   return (
