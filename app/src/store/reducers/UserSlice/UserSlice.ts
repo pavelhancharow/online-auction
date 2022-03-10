@@ -4,6 +4,7 @@ import { IUser } from 'src/models/IUser';
 import {
   auth,
   clearMessages,
+  createLot,
   logOut,
   registrUser,
   setUser,
@@ -13,14 +14,14 @@ interface UserState {
   currentUser: IUser;
   isLoading: boolean;
   error: string;
-  registration: string;
+  success: string;
 }
 
 const initialState: UserState = {
   currentUser: CurrentUserInit,
   isLoading: false,
   error: '',
-  registration: '',
+  success: '',
 };
 
 export const UserSlice = createSlice({
@@ -34,11 +35,11 @@ export const UserSlice = createSlice({
     [registrUser.fulfilled.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.error = '';
-      state.registration = action.payload;
+      state.success = action.payload;
     },
     [registrUser.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
-      state.registration = '';
+      state.success = '';
       state.error = action.payload;
     },
     [setUser.pending.type]: (state) => {
@@ -65,8 +66,21 @@ export const UserSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    [createLot.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [createLot.fulfilled.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = '';
+      state.success = action.payload;
+    },
+    [createLot.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.success = '';
+      state.error = action.payload;
+    },
     [clearMessages.fulfilled.type]: (state, action: PayloadAction<string>) => {
-      state.registration = action.payload;
+      state.success = action.payload;
       state.error = action.payload;
     },
     [logOut.fulfilled.type]: (state) => {

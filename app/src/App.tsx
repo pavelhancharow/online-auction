@@ -13,20 +13,20 @@ import { Admin } from './pages/Admin';
 export const App: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [message, setMessage] = useState<string>('');
-  const { registration, error, currentUser } = useAppSelector(
+  const { success, error, currentUser } = useAppSelector(
     (state) => state.userReducer
   );
 
   useEffect(() => {
-    if (registration || error) {
-      setMessage(registration || error);
+    if (success || error) {
+      setMessage(success || error);
 
       setTimeout(() => {
         setMessage('');
         dispatch(clearMessages());
       }, 1500);
     }
-  }, [registration, error, dispatch]);
+  }, [success, error, dispatch]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');

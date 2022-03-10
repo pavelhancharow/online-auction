@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { $host } from 'src/http';
-import { IRegistrForm } from 'src/models/IForms';
+import { IAdminForm, IRegistrForm } from 'src/models/IForms';
+import { handleFileRead } from 'src/services/handleFileRead';
 
 export const registrUser = createAsyncThunk(
   'registrUser',
@@ -64,3 +65,32 @@ export const auth = createAsyncThunk('auth', async (_, thunkAPI) => {
     );
   }
 });
+
+export const createLot = createAsyncThunk(
+  'createLot',
+  async (data: IAdminForm, thunkAPI) => {
+    try {
+      const { img, duration } = data;
+
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const date = new Date(duration!).getTime();
+      const currentDate = new Date().getTime();
+
+      if (currentDate >= date) return 'Please, select future time';
+
+      const file =
+        typeof img !== 'string' && img ? await handleFileRead(img[0]) : '';
+
+      const response = await $host.post('/admin/create', {
+        ...data,
+        img: file,
+      });
+
+      return response.data.message;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        (error as AxiosError).response?.data.message
+      );
+    }
+  }
+);
