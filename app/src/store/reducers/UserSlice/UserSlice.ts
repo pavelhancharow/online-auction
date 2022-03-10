@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CurrentUserInit } from 'src/data/CurrentUserInit';
+import { ILot } from 'src/models/ILot';
 import { IUser } from 'src/models/IUser';
 import {
   auth,
   clearMessages,
   createLot,
+  getLots,
   logOut,
   registrUser,
   setUser,
@@ -12,6 +14,7 @@ import {
 
 interface UserState {
   currentUser: IUser;
+  currentLots: ILot[];
   isLoading: boolean;
   error: string;
   success: string;
@@ -19,6 +22,7 @@ interface UserState {
 
 const initialState: UserState = {
   currentUser: CurrentUserInit,
+  currentLots: [],
   isLoading: false,
   error: '',
   success: '',
@@ -63,6 +67,18 @@ export const UserSlice = createSlice({
       state.currentUser = action.payload;
     },
     [auth.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [getLots.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [getLots.fulfilled.type]: (state, action: PayloadAction<ILot[]>) => {
+      state.isLoading = false;
+      state.error = '';
+      state.currentLots = action.payload;
+    },
+    [getLots.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.error = action.payload;
     },

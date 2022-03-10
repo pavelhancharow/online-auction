@@ -18,7 +18,7 @@ export const UserNav: FC = (): JSX.Element => {
       <ModalInfoBtns>
         <MyButton handleClick={() => dispatch(logOut())}>Logout</MyButton>
         <MyButton isLink={true}>
-          <Link to="/">Go to an auction</Link>
+          <Link to="/auction">Go to an auction</Link>
         </MyButton>
       </ModalInfoBtns>
     </ModalInfoBox>

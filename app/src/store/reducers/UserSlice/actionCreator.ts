@@ -94,3 +94,15 @@ export const createLot = createAsyncThunk(
     }
   }
 );
+
+export const getLots = createAsyncThunk('getLots', async (_, thunkAPI) => {
+  try {
+    const response = await $host.get('/auction/list');
+
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(
+      (error as AxiosError).response?.data.message
+    );
+  }
+});
