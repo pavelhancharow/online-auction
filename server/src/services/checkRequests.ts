@@ -4,6 +4,10 @@ import {
   firstname,
   lastname,
   phone,
+  title,
+  description,
+  duration,
+  rate,
 } from '../validation/requests';
 
 export const checkRegistration = () => [
@@ -13,4 +17,7 @@ export const checkRegistration = () => [
   password,
   email,
 ];
+
+export const checkLot = () => [title, description, duration, rate];
+
 export const checkLogin = () => [password, email];

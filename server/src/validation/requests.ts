@@ -23,3 +23,23 @@ export const email: ValidationChain = check(
   'email',
   'Incorrect email address'
 ).isEmail();
+
+export const title: ValidationChain = check(
+  'title',
+  'Title cannot be empty'
+).notEmpty();
+
+export const description: ValidationChain = check(
+  'description',
+  'Description cannot be empty'
+).notEmpty();
+
+export const duration: ValidationChain = check(
+  'duration',
+  'Duration cannot be empty'
+).notEmpty();
+
+export const rate: ValidationChain = check(
+  'rate',
+  'Rate cannot be empty'
+).isNumeric();

@@ -12,3 +12,11 @@ export interface IUser extends Document {
 export interface IRole extends Document {
   value: string;
 }
+
+export interface ILot extends Document {
+  title: string;
+  description: string;
+  img: string;
+  duration: string;
+  rate: number;
+}
