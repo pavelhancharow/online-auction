@@ -15,10 +15,13 @@ export class ErrorException extends Error {
       case ErrorCode.Unauthenticated:
         this.status = 403;
         break;
-      case ErrorCode.DuplicateEntityError ||
-        ErrorCode.RoleEntityError ||
-        ErrorCode.WrongPassword ||
-        ErrorCode.FieldValidation:
+      case ErrorCode.DuplicateEntityError:
+        this.status = 400;
+        break;
+      case ErrorCode.WrongPassword:
+        this.status = 400;
+        break;
+      case ErrorCode.RoleEntityError:
         this.status = 400;
         break;
       case ErrorCode.FieldValidation:
@@ -26,6 +29,9 @@ export class ErrorException extends Error {
         ErrorMessage.FieldValidation = message;
         break;
       case ErrorCode.UserNotFound:
+        this.status = 404;
+        break;
+      case ErrorCode.LotNotFound:
         this.status = 404;
         break;
       default:
