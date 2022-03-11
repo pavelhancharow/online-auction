@@ -1,32 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CurrentUserInit } from 'src/data/CurrentUserInit';
-import { ILot } from 'src/models/ILot';
-import { IUser } from 'src/models/IUser';
+import { initialState } from './initialState';
+import { CurrentLotInit, CurrentUserInit } from 'src/data/CurrentInit';
+import { ILot, IUser } from 'src/models/IModels';
 import {
-  auth,
+  authUser,
   clearMessages,
   createLot,
   getLots,
   logOut,
   registrUser,
+  setLot,
   setUser,
 } from './actionCreator';
-
-interface UserState {
-  currentUser: IUser;
-  currentLots: ILot[];
-  isLoading: boolean;
-  error: string;
-  success: string;
-}
-
-const initialState: UserState = {
-  currentUser: CurrentUserInit,
-  currentLots: [],
-  isLoading: false,
-  error: '',
-  success: '',
-};
 
 export const UserSlice = createSlice({
   name: 'user',
@@ -58,15 +43,15 @@ export const UserSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    [auth.pending.type]: (state) => {
+    [authUser.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [auth.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+    [authUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
       state.isLoading = false;
       state.error = '';
       state.currentUser = action.payload;
     },
-    [auth.rejected.type]: (state, action: PayloadAction<string>) => {
+    [authUser.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -95,12 +80,25 @@ export const UserSlice = createSlice({
       state.success = '';
       state.error = action.payload;
     },
+    [setLot.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [setLot.fulfilled.type]: (state, action: PayloadAction<ILot>) => {
+      state.isLoading = false;
+      state.error = '';
+      state.currentLot = action.payload;
+    },
+    [setLot.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
     [clearMessages.fulfilled.type]: (state, action: PayloadAction<string>) => {
       state.success = action.payload;
       state.error = action.payload;
     },
     [logOut.fulfilled.type]: (state) => {
       state.currentUser = CurrentUserInit;
+      state.currentLot = CurrentLotInit;
     },
   },
 });

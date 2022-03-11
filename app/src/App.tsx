@@ -3,12 +3,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import { MyAlert } from 'src/components/UI/MyAlert/MyAlert';
 import {
-  auth,
+  authUser,
   clearMessages,
 } from 'src/store/reducers/UserSlice/actionCreator';
-import { Auth } from './pages/Auth';
-import { User } from './pages/User';
-import { Admin } from './pages/Admin';
+import { Admin, Auth, User } from './pages';
 
 export const App: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -32,7 +30,7 @@ export const App: FC = (): JSX.Element => {
     const token = localStorage.getItem('token');
 
     async function checkAuth() {
-      await dispatch(auth());
+      await dispatch(authUser());
     }
 
     if (token) checkAuth();

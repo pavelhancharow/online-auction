@@ -22,17 +22,17 @@ export const AuctionItem: FC<AuctionItemProps> = ({
   rate,
 }): JSX.Element => {
   return (
-    <Link to="/lot">
+    <Link to={`/auction/${_id}`}>
       <AuctionItemBox>
         <AuctionItemImg srcSet={img} alt="image" />
         <div>
           <h3>{title}</h3>
           <AuctionItemInfo>
             <li>
-              <b>duration:</b> {duration}
+              <b>Lot duration up to:</b> {duration}
             </li>
             <li>
-              <b>current rate:</b> {rate}$
+              <b>Сurrent rate:</b> {rate}$
             </li>
           </AuctionItemInfo>
         </div>
