@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { getLots } from './auctionController';
+import { getLots, getLotById } from './auctionController';
 
 export const auctionRouter = Router();
 
-auctionRouter.get('/list', getLots);
+auctionRouter.get('/lots', getLots);
+auctionRouter.get('/lots/:lotId', getLotById);
