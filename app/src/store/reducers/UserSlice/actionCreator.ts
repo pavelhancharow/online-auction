@@ -51,7 +51,7 @@ export const logOut = createAsyncThunk('logOut', async () => {
   localStorage.removeItem('token');
 });
 
-export const auth = createAsyncThunk('auth', async (_, thunkAPI) => {
+export const authUser = createAsyncThunk('auth', async (_, thunkAPI) => {
   try {
     const response = await $host.get('/auth/auth', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -97,7 +97,7 @@ export const createLot = createAsyncThunk(
 
 export const getLots = createAsyncThunk('getLots', async (_, thunkAPI) => {
   try {
-    const response = await $host.get('/auction/list');
+    const response = await $host.get('/auction/lots');
 
     return response.data;
   } catch (error) {
@@ -106,3 +106,18 @@ export const getLots = createAsyncThunk('getLots', async (_, thunkAPI) => {
     );
   }
 });
+
+export const setLot = createAsyncThunk(
+  'setLot',
+  async (id: string, thunkAPI) => {
+    try {
+      const response = await $host.get(`/auction/lots/${id}`);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        (error as AxiosError).response?.data.message
+      );
+    }
+  }
+);
