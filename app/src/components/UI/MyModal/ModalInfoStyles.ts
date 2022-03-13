@@ -48,6 +48,7 @@ export const ModalInfoBox = styled.div`
 
 export const ModalInfoBtns = styled(FlexBox)`
   align-items: center;
+  margin-bottom: 20px;
 
   button {
     &:first-of-type {

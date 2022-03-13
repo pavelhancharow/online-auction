@@ -4,9 +4,12 @@ import { AuctionBox } from '../AuctionStyles';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import { getLots } from 'src/store/reducers/UserSlice/actionCreator';
 import { ILot } from 'src/models/IModels';
+import { MyLoader } from 'src/components/UI/MyLoader/MyLoader';
 
 export const AuctionList: FC = (): JSX.Element => {
-  const { currentLots } = useAppSelector((state) => state.userReducer);
+  const { currentLots, isLoading } = useAppSelector(
+    (state) => state.userReducer
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -15,6 +18,8 @@ export const AuctionList: FC = (): JSX.Element => {
     uploadLots();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (isLoading) return <MyLoader />;
 
   return (
     <AuctionBox>
