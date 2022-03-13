@@ -57,3 +57,18 @@ export const getUsersService = async () => {
 
   return users;
 };
+
+export const resetService = async (body: IBodyRegistr) => {
+  const { email, password } = body;
+
+  const user = await User.findOne({ email });
+  if (!user) throw new ErrorException(ErrorCode.UserNotFound);
+
+  if (user.roles[0] === 'ADMIN')
+    throw new ErrorException(ErrorCode.NoAccessRights);
+
+  const hashPassword = bcrypt.hashSync(password, 7);
+  await user.updateOne({ password: hashPassword });
+
+  return user;
+};

@@ -17,6 +17,12 @@ export const ResetFormInputs: IFormInput[] = [
     type: 'email',
     placeholder: 'Enter e-mail address',
   },
+  { id: 'password', type: 'password', placeholder: 'New password' },
+  {
+    id: 'confirm',
+    type: 'password',
+    placeholder: 'Confirm new password',
+  },
 ];
 
 export const RegistFormInputs: IFormInput[] = [

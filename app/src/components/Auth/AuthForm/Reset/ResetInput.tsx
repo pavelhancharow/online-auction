@@ -14,8 +14,9 @@ export const ResetInput: FC<ResetInputProps> = ({
   id,
   ...props
 }): JSX.Element => {
-  const { register, formState } = useFormContext<IResetForm>();
+  const { register, formState, watch } = useFormContext<IResetForm>();
   const { errors, touchedFields } = formState;
+  const password = watch('password');
 
   return (
     <FormInput
@@ -23,6 +24,7 @@ export const ResetInput: FC<ResetInputProps> = ({
       register={register}
       errors={errors}
       touchedFields={touchedFields}
+      password={password}
       {...props}
     />
   );

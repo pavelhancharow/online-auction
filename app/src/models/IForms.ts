@@ -15,6 +15,8 @@ export interface IRegistrForm {
 
 export interface IResetForm {
   email?: string;
+  password?: string;
+  confirm?: string;
 }
 
 export interface IAdminForm {

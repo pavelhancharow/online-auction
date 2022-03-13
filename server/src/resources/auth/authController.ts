@@ -4,6 +4,7 @@ import {
   getUsersService,
   loginService,
   registrationService,
+  resetService,
 } from './authService';
 import { IUser } from '../../interfaces/IModels';
 import { validateRequest } from '../../services/validateRequest';
@@ -74,6 +75,23 @@ export const getUsers = async (
     const users = await getUsersService();
 
     res.status(200).send(users);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const reset = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    validateRequest(req);
+
+    const user = await resetService(req.body);
+    await user.save();
+
+    res.status(200).send({ message: 'Password has been success update' });
   } catch (error) {
     next(error);
   }

@@ -11,6 +11,7 @@ export enum ErrorCode {
   WrongPassword = 'WrongPassword',
   FieldValidation = 'FieldValidation',
   UnknownError = 'UnknownError',
+  NoAccessRights = 'NoAccessRights',
 }
 
 export const ErrorMessage: ErrorType = {
@@ -22,4 +23,5 @@ export const ErrorMessage: ErrorType = {
   [ErrorCode.WrongPassword]: 'Wrong password entered',
   [ErrorCode.FieldValidation]: 'Field value is incorrect',
   [ErrorCode.UnknownError]: 'Something is wrong',
+  [ErrorCode.NoAccessRights]: 'No access rights to change password',
 };

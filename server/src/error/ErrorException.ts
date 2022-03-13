@@ -34,6 +34,9 @@ export class ErrorException extends Error {
       case ErrorCode.LotNotFound:
         this.status = 404;
         break;
+      case ErrorCode.NoAccessRights:
+        this.status = 403;
+        break;
       default:
         this.status = 500;
         break;

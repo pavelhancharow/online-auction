@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { $host } from 'src/http';
-import { IAdminForm, IRegistrForm } from 'src/models/IForms';
+import { IAdminForm, IRegistrForm, IResetForm } from 'src/models/IForms';
 import { handleFileRead } from 'src/services/handleFileRead';
 
 export const registrUser = createAsyncThunk(
@@ -114,6 +114,42 @@ export const setLot = createAsyncThunk(
       const response = await $host.get(`/auction/lots/${id}`);
 
       return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        (error as AxiosError).response?.data.message
+      );
+    }
+  }
+);
+
+export const updateLotRate = createAsyncThunk(
+  'updateLotRate',
+  async (data: { _id: string; res: number; userId: string }, thunkAPI) => {
+    try {
+      const { _id, res, userId } = data;
+      const response = await $host.put(`/auction/lots/${_id}`, {
+        rate: res,
+        userId,
+      });
+      console.log(response);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        (error as AxiosError).response?.data.message
+      );
+    }
+  }
+);
+
+export const resetUserPass = createAsyncThunk(
+  'registrUser',
+  async (data: IResetForm, thunkAPI) => {
+    try {
+      const { email, password } = data;
+      const response = await $host.put('auth/reset', { email, password });
+
+      return response.data.message;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         (error as AxiosError).response?.data.message
