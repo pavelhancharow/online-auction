@@ -10,9 +10,10 @@ export const lastname: ValidationChain = check(
   'Last name cannot be empty'
 ).notEmpty();
 
-export const phone: ValidationChain = check('phone', 'Phone not correct')
-  .notEmpty()
-  .isNumeric();
+export const phone: ValidationChain = check(
+  'phone',
+  'Phone not correct'
+).notEmpty();
 
 export const password: ValidationChain = check(
   'password',
