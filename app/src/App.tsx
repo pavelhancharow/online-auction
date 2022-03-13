@@ -38,13 +38,14 @@ export const App: FC = (): JSX.Element => {
   }, []);
 
   const showPage = () => {
-    return currentUser.roles[0] === 'USER' ? (
-      <User />
-    ) : currentUser.roles[0] === 'ADMIN' ? (
-      <Admin />
-    ) : (
-      <Auth />
-    );
+    switch (currentUser.roles[0]) {
+      case 'USER':
+        return <User />;
+      case 'ADMIN':
+        return <Admin />;
+      default:
+        return <Auth />;
+    }
   };
 
   return (
