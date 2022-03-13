@@ -11,6 +11,7 @@ import {
   registrUser,
   setLot,
   setUser,
+  updateLotRate,
 } from './actionCreator';
 
 export const UserSlice = createSlice({
@@ -89,6 +90,22 @@ export const UserSlice = createSlice({
       state.currentLot = action.payload;
     },
     [setLot.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [updateLotRate.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [updateLotRate.fulfilled.type]: (
+      state,
+      action: PayloadAction<{ lot: ILot; message: string }>
+    ) => {
+      state.isLoading = false;
+      state.error = '';
+      state.success = action.payload.message;
+      state.currentLot = action.payload.lot;
+    },
+    [updateLotRate.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.error = action.payload;
     },

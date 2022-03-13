@@ -131,7 +131,6 @@ export const updateLotRate = createAsyncThunk(
         rate: res,
         userId,
       });
-      console.log(response);
 
       return response.data;
     } catch (error) {

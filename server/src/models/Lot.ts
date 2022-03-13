@@ -7,6 +7,8 @@ const schema = new Schema<ILot>({
   img: { type: String, required: true },
   duration: { type: String, required: true },
   rate: { type: Number, required: true },
+  users: [{ userId: String }],
+  currentUser: { type: String },
 });
 
 export const Lot = model<ILot>('Lot', schema);

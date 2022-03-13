@@ -22,7 +22,7 @@ export const AuctionItem: FC<AuctionItemProps> = ({
   rate,
 }): JSX.Element => {
   return (
-    <Link to={`/auction/${_id}`}>
+    <Link to={`/${_id}`}>
       <AuctionItemBox>
         <AuctionItemImg srcSet={img} alt="image" />
         <div>

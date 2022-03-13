@@ -13,7 +13,7 @@ export const authRoutes = [
 export const privateUserRoutes = [
   { path: '/account', element: <UserAccount /> },
   { path: '/auction', element: <AuctionList /> },
-  { path: '/auction/:lotId', element: <AuctionLot /> },
+  { path: '/:lotId', element: <AuctionLot /> },
   { path: '*', element: <Navigate to="/account" /> },
 ];
 
