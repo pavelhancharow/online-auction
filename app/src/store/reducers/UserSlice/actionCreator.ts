@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { $host } from 'src/http';
+import { IDataWS } from 'src/models/IWS';
 import { IAdminForm, IRegistrForm, IResetForm } from 'src/models/IForms';
 import { handleFileRead } from 'src/services/handleFileRead';
 
@@ -122,25 +123,6 @@ export const setLot = createAsyncThunk(
   }
 );
 
-export const updateLotRate = createAsyncThunk(
-  'updateLotRate',
-  async (data: { _id: string; res: number; userId: string }, thunkAPI) => {
-    try {
-      const { _id, res, userId } = data;
-      const response = await $host.put(`/auction/lots/${_id}`, {
-        rate: res,
-        userId,
-      });
-
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        (error as AxiosError).response?.data.message
-      );
-    }
-  }
-);
-
 export const resetUserPass = createAsyncThunk(
   'registrUser',
   async (data: IResetForm, thunkAPI) => {
@@ -155,4 +137,19 @@ export const resetUserPass = createAsyncThunk(
       );
     }
   }
+);
+
+export const setMessage = createAsyncThunk(
+  'setMessage',
+  async (data: string) => data
+);
+
+export const clearCurrentLot = createAsyncThunk(
+  'clearCurrentLot',
+  async () => null
+);
+
+export const updateLot = createAsyncThunk(
+  'updateLot',
+  async (data: IDataWS) => data
 );

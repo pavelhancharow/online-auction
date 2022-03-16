@@ -4,14 +4,16 @@ import { CurrentLotInit, CurrentUserInit } from 'src/data/CurrentInit';
 import { ILot, IUser } from 'src/models/IModels';
 import {
   authUser,
+  clearCurrentLot,
   clearMessages,
   createLot,
   getLots,
   logOut,
   registrUser,
   setLot,
+  setMessage,
   setUser,
-  updateLotRate,
+  updateLot,
 } from './actionCreator';
 
 export const UserSlice = createSlice({
@@ -93,21 +95,8 @@ export const UserSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    [updateLotRate.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-    [updateLotRate.fulfilled.type]: (
-      state,
-      action: PayloadAction<{ lot: ILot; message: string }>
-    ) => {
-      state.isLoading = false;
-      state.error = '';
-      state.success = action.payload.message;
-      state.currentLot = action.payload.lot;
-    },
-    [updateLotRate.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.error = action.payload;
+    [setMessage.fulfilled.type]: (state, action: PayloadAction<string>) => {
+      state.success = action.payload;
     },
     [clearMessages.fulfilled.type]: (state, action: PayloadAction<string>) => {
       state.success = action.payload;
@@ -116,6 +105,18 @@ export const UserSlice = createSlice({
     [logOut.fulfilled.type]: (state) => {
       state.currentUser = CurrentUserInit;
       state.currentLot = CurrentLotInit;
+    },
+    [clearCurrentLot.fulfilled.type]: (state) => {
+      state.currentLot = CurrentLotInit;
+    },
+    [updateLot.fulfilled.type]: (
+      state,
+      action: PayloadAction<{ lot: ILot; message: string }>
+    ) => {
+      state.isLoading = false;
+      state.error = '';
+      state.success = action.payload.message;
+      state.currentLot = action.payload.lot;
     },
   },
 });

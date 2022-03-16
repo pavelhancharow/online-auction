@@ -1,26 +1,69 @@
-import { FC } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FC, useEffect, useRef } from 'react';
 import { MyButton } from 'src/components/UI/MyButton/MyButton';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
-import { updateLotRate } from 'src/store/reducers/UserSlice/actionCreator';
+import { ActionWSTypes, IActionWS, IDataWS } from 'src/models/IWS';
+import { getNewBet } from 'src/services/getNewBet';
+import {
+  setMessage,
+  updateLot,
+} from 'src/store/reducers/UserSlice/actionCreator';
+import { UserState } from 'src/store/reducers/UserSlice/UserState';
 import { AuctionLotBtnsBox } from './AuctionLotStyles';
 
 export const AuctionLotBtns: FC = (): JSX.Element => {
   const {
     currentUser,
     currentLot: { rate, _id },
-  } = useAppSelector((state) => state.userReducer);
+  } = useAppSelector<UserState>((state) => state.userReducer);
+  const ws = useRef<WebSocket | null>(null);
   const dispatch = useAppDispatch();
-  const bet: number[] = [5, 10, 15];
+  const bets: number[] = [5, 10, 15];
+
+  useEffect(() => {
+    ws.current = new WebSocket('ws://localhost:5000/lot');
+
+    ws.current.onopen = () => {
+      const action: IActionWS = {
+        type: ActionWSTypes.CONNECTION,
+        payload: { lotId: _id, userId: currentUser.id },
+      };
+
+      ws.current?.send(JSON.stringify(action));
+    };
+
+    return () => ws.current?.close();
+  }, []);
+
+  useEffect(() => {
+    if (!ws.current) return;
+
+    ws.current.onmessage = async (event: MessageEvent) => {
+      const data: IDataWS = JSON.parse(event.data.toString('utf-8'));
+
+      data.lot
+        ? await dispatch(updateLot(data))
+        : await dispatch(setMessage(data.message));
+    };
+  }, []);
 
   const raiseBet = async (value: number) => {
-    const res = +(rate + (rate / 100) * value).toFixed(2);
-    await dispatch(updateLotRate({ _id, res, userId: currentUser.id }));
+    const action: IActionWS = {
+      type: ActionWSTypes.MESSAGE,
+      payload: {
+        lotId: _id,
+        userId: currentUser.id,
+        rate: getNewBet(rate, value),
+      },
+    };
+
+    ws.current?.send(JSON.stringify(action));
   };
 
   return (
     <AuctionLotBtnsBox>
       <h3>Raise your bet:</h3>
-      {bet.map((item) => (
+      {bets.map((item) => (
         <MyButton key={item} handleClick={() => raiseBet(item)}>
           {item}%
         </MyButton>
