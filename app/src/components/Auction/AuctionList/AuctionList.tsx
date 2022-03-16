@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect } from 'react';
 import { AuctionItem } from './AuctionItem/AuctionItem';
 import { AuctionBox } from '../AuctionStyles';
@@ -14,9 +15,7 @@ export const AuctionList: FC = (): JSX.Element => {
 
   useEffect(() => {
     const uploadLots = async () => await dispatch(getLots());
-
     uploadLots();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) return <MyLoader />;

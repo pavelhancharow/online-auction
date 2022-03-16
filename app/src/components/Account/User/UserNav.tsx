@@ -1,7 +1,10 @@
 import { FC } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'src/hooks/redux';
-import { logOut } from 'src/store/reducers/UserSlice/actionCreator';
+import {
+  clearCurrentLot,
+  logOut,
+} from 'src/store/reducers/UserSlice/actionCreator';
 import { ModalInfoBox, ModalInfoBtns } from '../../UI/MyModal/ModalInfoStyles';
 import { MyButton } from '../../UI/MyButton/MyButton';
 
@@ -17,10 +20,15 @@ export const UserNav: FC = (): JSX.Element => {
       <Link to="/account">Go to an account</Link>
     );
 
+  const backHandler = async () => {
+    await dispatch(clearCurrentLot());
+    navigate(-1);
+  };
+
   const getBack = () =>
     location.pathname !== '/auction' &&
     location.pathname !== '/account' && (
-      <MyButton handleClick={() => navigate(-1)}>Back</MyButton>
+      <MyButton handleClick={backHandler}>Back</MyButton>
     );
 
   return (
