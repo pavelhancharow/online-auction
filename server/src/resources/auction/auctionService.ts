@@ -14,20 +14,3 @@ export const getLotByIdService = async (_id: string) => {
 
   return lot;
 };
-
-export const updateLotRateService = async (
-  _id: string,
-  body: { rate: number; userId: string }
-) => {
-  const { rate, userId } = body;
-
-  const lot = await Lot.findOneAndUpdate(
-    { _id },
-    { rate, currentUser: userId },
-    { new: true }
-  );
-
-  if (!lot) throw new ErrorException(ErrorCode.LotNotFound);
-
-  return lot;
-};
