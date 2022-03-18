@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { MyButton } from '../UI/MyButton/MyButton';
+import { MyButton } from '../UI/MyButton';
 import { ModalInfoBox, ModalInfoBtns } from '../UI/MyModal/ModalInfoStyles';
 
 export const AuthNav: FC = (): JSX.Element => {

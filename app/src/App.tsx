@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
-import { MyAlert } from 'src/components/UI/MyAlert/MyAlert';
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { MyAlert } from './components/UI/MyAlert/MyAlert';
 import {
   authUser,
   clearMessages,
-} from 'src/store/reducers/UserSlice/actionCreator';
-import { Admin, Auth, User } from './pages';
+} from './store/reducers/UserSlice/actionCreator';
+import { Auth, User } from './pages';
 
 export const App: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -37,20 +37,9 @@ export const App: FC = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const showPage = () => {
-    switch (currentUser.roles[0]) {
-      case 'USER':
-        return <User />;
-      case 'ADMIN':
-        return <Admin />;
-      default:
-        return <Auth />;
-    }
-  };
-
   return (
     <BrowserRouter>
-      {showPage()}
+      {currentUser.roles[0] ? <User /> : <Auth />}
       {message && <MyAlert>{message}</MyAlert>}
     </BrowserRouter>
   );

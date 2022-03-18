@@ -1,4 +1,4 @@
-import { AdminAccount } from './Admin/AdminAccount';
-import { UserAccount } from './User/UserAccount';
+import { AdminAccount } from './AdminAccount';
+import { UserAccount } from './UserAccount';
 
 export { AdminAccount, UserAccount };

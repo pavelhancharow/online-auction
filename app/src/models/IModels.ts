@@ -3,8 +3,11 @@ export interface ILot {
   title: string;
   description: string;
   img: string;
-  duration: string;
+  start: string;
+  active: boolean;
+  completed: boolean;
   rate: number;
+  currentUser: string;
 }
 
 export interface IUser {

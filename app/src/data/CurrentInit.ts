@@ -5,8 +5,11 @@ export const CurrentLotInit: ILot = {
   title: '',
   description: '',
   img: '',
-  duration: '',
+  start: '',
+  active: false,
+  completed: false,
   rate: NaN,
+  currentUser: '',
 };
 
 export const CurrentUserInit: IUser = {

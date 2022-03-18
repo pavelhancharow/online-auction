@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { UserNav } from 'src/components/Account/User/UserNav';
+import { UserNav } from 'src/components/User';
 import { privateUserRoutes } from 'src/routes';
 import { ModalBox, ModalWrap } from '../components/UI/MyModal/ModalStyles';
 

@@ -10,11 +10,14 @@ import {
   getLots,
   logOut,
   registrUser,
+  removeLots,
+  setActiveLots,
   setLot,
   setMessage,
   setUser,
   updateLot,
 } from './actionCreator';
+import { ILots } from './UserState';
 
 export const UserSlice = createSlice({
   name: 'user',
@@ -61,10 +64,12 @@ export const UserSlice = createSlice({
     [getLots.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getLots.fulfilled.type]: (state, action: PayloadAction<ILot[]>) => {
+    [getLots.fulfilled.type]: (state, action: PayloadAction<ILots>) => {
       state.isLoading = false;
       state.error = '';
-      state.currentLots = action.payload;
+      state.currentLots = action.payload.currentLots;
+      state.activeLots = action.payload.activeLots;
+      state.completedLots = action.payload.completedLots;
     },
     [getLots.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
@@ -117,6 +122,42 @@ export const UserSlice = createSlice({
       state.error = '';
       state.success = action.payload.message;
       state.currentLot = action.payload.lot;
+    },
+    [removeLots.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [removeLots.fulfilled.type]: (
+      state,
+      action: PayloadAction<{ lots: ILots; message: string }>
+    ) => {
+      state.isLoading = false;
+      state.error = '';
+      state.success = action.payload.message;
+      state.currentLots = action.payload.lots.currentLots;
+      state.activeLots = action.payload.lots.activeLots;
+      state.completedLots = action.payload.lots.completedLots;
+    },
+    [removeLots.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [setActiveLots.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [setActiveLots.fulfilled.type]: (
+      state,
+      action: PayloadAction<{ lots: ILots; message: string }>
+    ) => {
+      state.isLoading = false;
+      state.error = '';
+      state.success = action.payload.message;
+      state.currentLots = action.payload.lots.currentLots;
+      state.activeLots = action.payload.lots.activeLots;
+      state.completedLots = action.payload.lots.completedLots;
+    },
+    [setActiveLots.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });

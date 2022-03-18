@@ -29,3 +29,14 @@ export const ModalFormBox = styled(FlexColumn)`
     font-weight: 700;
   }
 `;
+
+export const ModalAuctionBox = styled(ModalFormBox)`
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 38px;
+
+  & > button {
+    position: absolute;
+    width: 90px;
+  }
+`;

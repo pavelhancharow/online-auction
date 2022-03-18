@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { $host } from 'src/http';
@@ -71,10 +72,9 @@ export const createLot = createAsyncThunk(
   'createLot',
   async (data: IAdminForm, thunkAPI) => {
     try {
-      const { img, duration } = data;
+      const { img, start } = data;
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const date = new Date(duration!).getTime();
+      const date = new Date(start!).getTime();
       const currentDate = new Date().getTime();
 
       if (currentDate >= date) return 'Please, select future time';
@@ -152,4 +152,35 @@ export const clearCurrentLot = createAsyncThunk(
 export const updateLot = createAsyncThunk(
   'updateLot',
   async (data: IDataWS) => data
+);
+
+export const removeLots = createAsyncThunk(
+  'removeLots',
+  async (data: string[], thunkAPI) => {
+    try {
+      const response = await $host.delete('auction/lots', { data });
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        (error as AxiosError).response?.data.message
+      );
+    }
+  }
+);
+
+export const setActiveLots = createAsyncThunk(
+  'setActiveLots',
+  async (data: string[], thunkAPI) => {
+    try {
+      const response = await $host.put('auction/lots', { data });
+      console.log(response);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        (error as AxiosError).response?.data.message
+      );
+    }
+  }
 );

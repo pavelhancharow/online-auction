@@ -7,7 +7,7 @@ import {
 import { IForm } from 'src/models/IForms';
 import { InputIdType, InputType } from 'src/models/InputTypes';
 import { getInputOption } from 'src/services/getInputOption';
-import { MyInput } from '../UI/MyInput/MyInput';
+import { MyInput } from '../UI/MyInput';
 import { FormInputBox, FormInputCheck, FormInputFail } from './FormStyles';
 
 interface FormInputProps {

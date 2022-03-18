@@ -23,8 +23,12 @@ export interface IAdminForm {
   title?: string;
   description?: string;
   img?: FileList | string;
-  duration?: string;
+  start?: string;
   rate?: string;
+}
+
+export interface IListFutureForm {
+  [index: string]: boolean;
 }
 
 export type IForm = ILoginForm & IRegistrForm & IResetForm & IAdminForm;
