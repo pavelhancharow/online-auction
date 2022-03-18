@@ -8,6 +8,7 @@ export const ModalFormBox = styled(FlexColumn)`
   width: 53%;
   padding: 56px 54px 128px 50px;
   background-color: ${body};
+  overflow-y: auto;
 
   h2 {
     font-size: 1.6rem;

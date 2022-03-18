@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { FC, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import { MyButton } from '../UI/MyButton';
 import { MyLoader } from '../UI/MyLoader';
@@ -27,7 +27,14 @@ export const AuctionLot: FC = (): JSX.Element => {
     if (lotId) uploadLot();
   }, []);
 
+  if (currentLot._id !== lotId) return <Navigate to="/account" />;
   if (isLoading) return <MyLoader />;
+
+  const setBtns = () => {
+    if (user === 'USER' && currentLot.active) return <AuctionLotBtns />;
+    if (user === 'ADMIN' && currentLot.active) return <AuctionLotBtnsAdmin />;
+    return null;
+  };
 
   return (
     <ModalAuctionBox>
@@ -36,11 +43,7 @@ export const AuctionLot: FC = (): JSX.Element => {
         <AuctionLotImg srcSet={img} alt={title} />
         <h2>{title}</h2>
         <AuctionLotInfo />
-        {user !== 'USER' ? (
-          <AuctionLotBtnsAdmin />
-        ) : currentLot.active ? (
-          <AuctionLotBtns />
-        ) : null}
+        {setBtns()}
       </AuctionLotBox>
     </ModalAuctionBox>
   );

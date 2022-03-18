@@ -23,6 +23,14 @@ export const AdminFormFieldset: FC<AdminFieldsetProps> = ({
       >
         Auction Start:{' '}
       </MyFieldset>
+      <MyFieldset
+        id="finish"
+        type="datetime-local"
+        time={time}
+        register={register}
+      >
+        Auction Finish:{' '}
+      </MyFieldset>
       <MyFieldset id="img" type="file" register={register}>
         Lot Image:{' '}
       </MyFieldset>

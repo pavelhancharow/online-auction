@@ -37,10 +37,10 @@ export const setUser = createAsyncThunk(
 
       if (data.remember) localStorage.setItem('token', response.data.token);
 
-      const { firstname, lastname, phone, email, id, roles } =
+      const { firstname, lastname, phone, email, id, roles, lots } =
         response.data.user;
 
-      return { firstname, lastname, phone, email, id, roles };
+      return { firstname, lastname, phone, email, id, roles, lots };
     } catch (error) {
       return thunkAPI.rejectWithValue(
         (error as AxiosError).response?.data.message
@@ -72,12 +72,14 @@ export const createLot = createAsyncThunk(
   'createLot',
   async (data: IAdminForm, thunkAPI) => {
     try {
-      const { img, start } = data;
+      const { img, start, finish } = data;
 
-      const date = new Date(start!).getTime();
+      const startDate = new Date(start!).getTime();
+      const finishDate = new Date(finish!).getTime();
       const currentDate = new Date().getTime();
 
-      if (currentDate >= date) return 'Please, select future time';
+      if (currentDate >= startDate || startDate >= finishDate)
+        return 'Please, select correct time';
 
       const file =
         typeof img !== 'string' && img ? await handleFileRead(img[0]) : '';
@@ -174,7 +176,6 @@ export const setActiveLots = createAsyncThunk(
   async (data: string[], thunkAPI) => {
     try {
       const response = await $host.put('auction/lots', { data });
-      console.log(response);
 
       return response.data;
     } catch (error) {

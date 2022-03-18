@@ -8,6 +8,7 @@ interface ListFutureFormItemProps {
   title: string;
   img: string;
   start: string;
+  finish: string;
   rate: number;
 }
 

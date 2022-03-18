@@ -44,10 +44,24 @@ export const AuctionLotBtnsAdmin: FC = (): JSX.Element => {
     };
   }, []);
 
+  const finishAuction = async () => {
+    if (!currentLot.currentUser) {
+      await dispatch(setMessage('No current user'));
+      return;
+    }
+
+    const action: IActionWS = {
+      type: ActionWSTypes.FINISH,
+      payload: { lotId: _id },
+    };
+
+    ws.current?.send(JSON.stringify(action));
+  };
+
   return (
     <AuctionLotBtnsBox>
       <h3>Auction options:</h3>
-      <MyButton>Finish Auction</MyButton>
+      <MyButton handleClick={finishAuction}>Finish Auction</MyButton>
     </AuctionLotBtnsBox>
   );
 };

@@ -20,6 +20,7 @@ export const AdminForm: FC = (): JSX.Element => {
       description: '',
       img: '',
       start: time,
+      finish: time,
       rate: '',
     },
     mode: 'onBlur',
@@ -39,6 +40,7 @@ export const AdminForm: FC = (): JSX.Element => {
         description: '',
         img: '',
         start: getLocalTime(),
+        finish: getLocalTime(),
         rate: '',
       });
     }

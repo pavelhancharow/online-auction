@@ -4,6 +4,7 @@ export interface ILot {
   description: string;
   img: string;
   start: string;
+  finish: string;
   active: boolean;
   completed: boolean;
   rate: number;
@@ -16,5 +17,6 @@ export interface IUser {
   lastname: string;
   phone: string;
   email: string;
+  lots: string[];
   roles: string[];
 }

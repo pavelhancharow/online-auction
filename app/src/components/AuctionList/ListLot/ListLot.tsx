@@ -5,6 +5,7 @@ interface ListLotProps {
   title: string;
   img: string;
   start: string;
+  finish: string;
   rate: number;
 }
 
@@ -12,6 +13,7 @@ export const ListLot: FC<ListLotProps> = ({
   title,
   img,
   start,
+  finish,
   rate,
 }): JSX.Element => {
   return (
@@ -22,6 +24,9 @@ export const ListLot: FC<ListLotProps> = ({
         <ListLotInfo>
           <li>
             <b>Auction start:</b> {start}
+          </li>
+          <li>
+            <b>Auction finish:</b> {finish}
           </li>
           <li>
             <b>Сurrent rate:</b> {rate}$

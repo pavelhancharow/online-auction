@@ -8,6 +8,7 @@ export interface IDataWS {
 export enum ActionWSTypes {
   CONNECTION = 'CONNECTION',
   MESSAGE = 'MESSAGE',
+  FINISH = 'FINISH',
 }
 
 interface IActionWSCONNECTION {
@@ -20,4 +21,12 @@ interface IActionWSMessage {
   payload: { lotId: string; userId: string; rate: number };
 }
 
-export type IActionWS = IActionWSCONNECTION | IActionWSMessage;
+interface IActionWSFinish {
+  type: ActionWSTypes.FINISH;
+  payload: { lotId: string };
+}
+
+export type IActionWS =
+  | IActionWSCONNECTION
+  | IActionWSMessage
+  | IActionWSFinish;

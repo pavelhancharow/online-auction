@@ -24,6 +24,7 @@ export interface IAdminForm {
   description?: string;
   img?: FileList | string;
   start?: string;
+  finish?: string;
   rate?: string;
 }
 

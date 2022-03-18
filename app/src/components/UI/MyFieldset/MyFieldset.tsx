@@ -5,7 +5,7 @@ import { InputType } from 'src/models/InputTypes';
 import { MyFieldsetBox } from './MyFieldsetStyles';
 
 interface MyDurationProps {
-  id: 'start' | 'img';
+  id: 'start' | 'img' | 'finish';
   type: InputType;
   register: UseFormRegister<IAdminForm>;
   time?: string;

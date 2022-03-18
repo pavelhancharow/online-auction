@@ -6,6 +6,7 @@ export const CurrentLotInit: ILot = {
   description: '',
   img: '',
   start: '',
+  finish: '',
   active: false,
   completed: false,
   rate: NaN,
@@ -18,5 +19,6 @@ export const CurrentUserInit: IUser = {
   lastname: '',
   phone: '',
   email: '',
+  lots: [],
   roles: [],
 };

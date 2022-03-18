@@ -4,7 +4,7 @@ import { AuctionLotInfoBox } from './AuctionLotStyles';
 
 export const AuctionLotInfo: FC = (): JSX.Element => {
   const { currentLot } = useAppSelector((state) => state.userReducer);
-  const { description, start, rate } = currentLot;
+  const { description, start, finish, rate, currentUser } = currentLot;
 
   return (
     <AuctionLotInfoBox>
@@ -15,6 +15,14 @@ export const AuctionLotInfo: FC = (): JSX.Element => {
       <span>
         <b>Lot start date: </b>
         {start}
+      </span>
+      <span>
+        <b>Lot finish date: </b>
+        {finish}
+      </span>
+      <span>
+        <b>Current user: </b>
+        {currentUser}
       </span>
       <span>
         <b>Current rate: </b>
