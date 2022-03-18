@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
@@ -34,7 +35,6 @@ export const App: FC = (): JSX.Element => {
     }
 
     if (token) checkAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
