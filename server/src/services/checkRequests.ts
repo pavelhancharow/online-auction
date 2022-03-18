@@ -6,7 +6,7 @@ import {
   phone,
   title,
   description,
-  duration,
+  start,
   rate,
 } from '../validation/requests';
 
@@ -18,6 +18,6 @@ export const checkRegistration = () => [
   email,
 ];
 
-export const checkLot = () => [title, description, duration, rate];
+export const checkLot = () => [title, description, start, rate];
 
 export const checkLogin = () => [password, email];

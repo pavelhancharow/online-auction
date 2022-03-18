@@ -35,9 +35,9 @@ export const description: ValidationChain = check(
   'Description cannot be empty'
 ).notEmpty();
 
-export const duration: ValidationChain = check(
-  'duration',
-  'Duration cannot be empty'
+export const start: ValidationChain = check(
+  'start',
+  'Start date cannot be empty'
 ).notEmpty();
 
 export const rate: ValidationChain = check(

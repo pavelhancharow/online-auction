@@ -17,9 +17,9 @@ export interface ILot extends Document {
   title: string;
   description: string;
   img: string;
-  startDate: string;
+  start: string;
   active: boolean;
-  duration: string;
+  completed: boolean;
   rate: number;
   currentUser: string;
 }
