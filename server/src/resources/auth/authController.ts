@@ -36,11 +36,11 @@ export const login = async (
 
     const user = await loginService(req.body);
     const { token } = user;
-    const { _id, firstname, lastname, phone, email, roles } = user.user;
+    const { _id, firstname, lastname, phone, email, roles, lots } = user.user;
 
     res.status(200).send({
       token,
-      user: { id: _id, firstname, lastname, phone, email, roles },
+      user: { id: _id, firstname, lastname, phone, email, roles, lots },
     });
   } catch (error) {
     next(error);
@@ -55,11 +55,11 @@ export const auth = async (
   try {
     const user = await authService(req.body.user.id);
     const { token } = user;
-    const { _id, firstname, lastname, phone, email, roles } = user.user;
+    const { _id, firstname, lastname, phone, email, roles, lots } = user.user;
 
     res.status(200).send({
       token,
-      user: { id: _id, firstname, lastname, phone, email, roles },
+      user: { id: _id, firstname, lastname, phone, email, roles, lots },
     });
   } catch (error) {
     next(error);

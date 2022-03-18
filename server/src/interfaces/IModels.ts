@@ -6,6 +6,7 @@ export interface IUser extends Document {
   phone: string;
   email: string;
   password: string;
+  lots: string[];
   roles: string[];
 }
 
@@ -18,6 +19,7 @@ export interface ILot extends Document {
   description: string;
   img: string;
   start: string;
+  finish: string;
   active: boolean;
   completed: boolean;
   rate: number;

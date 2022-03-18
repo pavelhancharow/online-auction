@@ -7,6 +7,7 @@ const schema = new Schema<IUser>({
   phone: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  lots: [{ type: String }],
   roles: [{ type: String, ref: 'Role' }],
 });
 

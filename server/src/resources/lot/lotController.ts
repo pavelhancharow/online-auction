@@ -1,7 +1,7 @@
 import { aWss } from '../../app';
 import { ILot } from '../../interfaces/IModels';
 import { CustomWS, DataAction, DataActionTypes } from '../../interfaces/IWS';
-import { connect, raiseBet } from './lotService';
+import { connect, finishAuction, raiseBet } from './lotService';
 
 interface IResult {
   message: string;
@@ -20,7 +20,7 @@ const broadcastConnection = async (_: CustomWS, data: DataAction) => {
       result = await raiseBet({ ...payload, rate: payload.rate! });
       break;
     default:
-      result;
+      result = await finishAuction({ lotId: payload.lotId });
       break;
   }
 

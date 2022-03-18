@@ -40,6 +40,11 @@ export const start: ValidationChain = check(
   'Start date cannot be empty'
 ).notEmpty();
 
+export const finish: ValidationChain = check(
+  'finish',
+  'Finish date cannot be empty'
+).notEmpty();
+
 export const rate: ValidationChain = check(
   'rate',
   'Rate cannot be empty'

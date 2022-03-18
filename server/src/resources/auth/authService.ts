@@ -22,6 +22,7 @@ export const registrationService = async (body: IBodyRegistr) => {
     phone,
     email,
     password: hashPassword,
+    lots: [],
     roles: [userRole.value],
   });
 

@@ -6,6 +6,7 @@ const schema = new Schema<ILot>({
   description: { type: String, required: true },
   img: { type: String, required: true },
   start: { type: String, required: true },
+  finish: { type: String, required: true },
   rate: { type: Number, required: true },
   active: { type: Boolean, default: false },
   completed: { type: Boolean, default: false },

@@ -7,6 +7,7 @@ import {
   title,
   description,
   start,
+  finish,
   rate,
 } from '../validation/requests';
 
@@ -18,6 +19,6 @@ export const checkRegistration = () => [
   email,
 ];
 
-export const checkLot = () => [title, description, start, rate];
+export const checkLot = () => [title, description, start, finish, rate];
 
 export const checkLogin = () => [password, email];
