@@ -27,7 +27,6 @@ export const AuctionLot: FC = (): JSX.Element => {
     if (lotId) uploadLot();
   }, []);
 
-  if (currentLot._id !== lotId) return <Navigate to="/account" />;
   if (isLoading) return <MyLoader />;
 
   const setBtns = () => {
