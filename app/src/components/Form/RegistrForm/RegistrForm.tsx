@@ -9,20 +9,19 @@ import { IRegistrForm } from 'src/models/IForms';
 import { registrUser } from 'src/store/reducers/UserSlice/actionCreator';
 import { RegistrFormInput } from './RegistrFormInput';
 
+const defaultValues = {
+  firstname: '',
+  lastname: '',
+  phone: '',
+  email: '',
+  password: '',
+  confirm: '',
+};
+
 export const RegistrForm: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const methods = useForm<IRegistrForm>({
-    defaultValues: {
-      firstname: '',
-      lastname: '',
-      phone: '',
-      email: '',
-      password: '',
-      confirm: '',
-    },
-    mode: 'onBlur',
-  });
+  const methods = useForm<IRegistrForm>({ defaultValues, mode: 'onBlur' });
 
   const { handleSubmit } = methods;
 

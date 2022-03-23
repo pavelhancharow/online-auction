@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, useEffect, useRef } from 'react';
+import { FC, memo, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import { ActionWSTypes, IActionWS, IDataWS } from 'src/models/IWS';
 import {
@@ -9,7 +9,7 @@ import {
 import { MyButton } from '../UI/MyButton';
 import { AuctionLotBtnsBox } from './AuctionLotStyles';
 
-export const AuctionLotBtnsAdmin: FC = (): JSX.Element => {
+const AuctionLotBtnsAdminMemo: FC = (): JSX.Element => {
   const ws = useRef<WebSocket | null>(null);
   const dispatch = useAppDispatch();
   const { currentUser, currentLot } = useAppSelector(
@@ -65,3 +65,5 @@ export const AuctionLotBtnsAdmin: FC = (): JSX.Element => {
     </AuctionLotBtnsBox>
   );
 };
+
+export const AuctionLotBtnsAdmin = memo(AuctionLotBtnsAdminMemo);

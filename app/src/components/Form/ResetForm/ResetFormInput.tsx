@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FormInput } from '../FormInput';
 import { IResetForm } from 'src/models/IForms';
@@ -10,7 +10,7 @@ interface ResetFormInputProps {
   placeholder: string;
 }
 
-export const ResetFormInput: FC<ResetFormInputProps> = ({
+const ResetFormInputMemo: FC<ResetFormInputProps> = ({
   id,
   ...props
 }): JSX.Element => {
@@ -29,3 +29,5 @@ export const ResetFormInput: FC<ResetFormInputProps> = ({
     />
   );
 };
+
+export const ResetFormInput = memo(ResetFormInputMemo);

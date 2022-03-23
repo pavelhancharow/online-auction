@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, memo, ReactNode } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { ILoginForm } from 'src/models/IForms';
 import { CheckboxIdType } from 'src/models/InputTypes';
@@ -10,7 +10,7 @@ interface MyCheckboxProps {
   register: UseFormRegister<ILoginForm>;
 }
 
-export const MyCheckbox: FC<MyCheckboxProps> = ({
+const MyCheckboxMemo: FC<MyCheckboxProps> = ({
   children,
   id,
   register,
@@ -22,3 +22,5 @@ export const MyCheckbox: FC<MyCheckboxProps> = ({
     </MyCheckboxBox>
   );
 };
+
+export const MyCheckbox = memo(MyCheckboxMemo);

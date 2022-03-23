@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, useEffect, useRef } from 'react';
+import { FC, memo, useEffect, useRef } from 'react';
 import { MyButton } from '../UI/MyButton';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import { ActionWSTypes, IActionWS, IDataWS } from 'src/models/IWS';
@@ -11,14 +11,15 @@ import {
 import { UserState } from 'src/store/reducers/UserSlice/UserState';
 import { AuctionLotBtnsBox } from './AuctionLotStyles';
 
-export const AuctionLotBtns: FC = (): JSX.Element => {
+const bets: number[] = [5, 10, 15];
+
+const AuctionLotBtnsMemo: FC = (): JSX.Element => {
   const {
     currentUser,
     currentLot: { rate, _id },
   } = useAppSelector<UserState>((state) => state.userReducer);
   const ws = useRef<WebSocket | null>(null);
   const dispatch = useAppDispatch();
-  const bets: number[] = [5, 10, 15];
 
   useEffect(() => {
     ws.current = new WebSocket('ws://localhost:5000/lot');
@@ -71,3 +72,5 @@ export const AuctionLotBtns: FC = (): JSX.Element => {
     </AuctionLotBtnsBox>
   );
 };
+
+export const AuctionLotBtns = memo(AuctionLotBtnsMemo);

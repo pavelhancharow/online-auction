@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { ListLotBox, ListLotImg, ListLotInfo } from './ListLotStyles';
 
 interface ListLotProps {
@@ -9,7 +9,7 @@ interface ListLotProps {
   rate: number;
 }
 
-export const ListLot: FC<ListLotProps> = ({
+const ListLotMemo: FC<ListLotProps> = ({
   title,
   img,
   start,
@@ -36,3 +36,5 @@ export const ListLot: FC<ListLotProps> = ({
     </ListLotBox>
   );
 };
+
+export const ListLot = memo(ListLotMemo);

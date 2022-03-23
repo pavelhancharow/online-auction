@@ -9,17 +9,12 @@ import { IResetForm } from 'src/models/IForms';
 import { resetUserPass } from 'src/store/reducers/UserSlice/actionCreator';
 import { ResetFormInput } from './ResetFormInput';
 
+const defaultValues = { email: '', password: '', confirm: '' };
+
 export const ResetForm: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const methods = useForm<IResetForm>({
-    defaultValues: {
-      email: '',
-      password: '',
-      confirm: '',
-    },
-    mode: 'onBlur',
-  });
+  const methods = useForm<IResetForm>({ defaultValues, mode: 'onBlur' });
 
   const { handleSubmit } = methods;
 

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FormInput } from '../FormInput';
 import { IAdminForm } from 'src/models/IForms';
@@ -10,7 +10,7 @@ interface AdminFormInputProps {
   placeholder: string;
 }
 
-export const AdminFormInput: FC<AdminFormInputProps> = ({
+const AdminFormInputMemo: FC<AdminFormInputProps> = ({
   id,
   ...props
 }): JSX.Element => {
@@ -27,3 +27,5 @@ export const AdminFormInput: FC<AdminFormInputProps> = ({
     />
   );
 };
+
+export const AdminFormInput = memo(AdminFormInputMemo);

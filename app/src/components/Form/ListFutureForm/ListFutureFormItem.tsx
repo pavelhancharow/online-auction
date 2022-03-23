@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { ListLot } from '../../AuctionList/ListLot';
 import { ListFutureItemBox } from './ListFutureFormStyles';
@@ -12,7 +12,7 @@ interface ListFutureFormItemProps {
   rate: number;
 }
 
-export const ListFutureFormItem: FC<ListFutureFormItemProps> = ({
+const ListFutureFormItemMemo: FC<ListFutureFormItemProps> = ({
   _id,
   ...props
 }): JSX.Element => {
@@ -27,3 +27,5 @@ export const ListFutureFormItem: FC<ListFutureFormItemProps> = ({
     </ListFutureItemBox>
   );
 };
+
+export const ListFutureFormItem = memo(ListFutureFormItemMemo);

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FormInput } from '../FormInput';
 import { ILoginForm } from 'src/models/IForms';
@@ -10,7 +10,7 @@ interface LoginFormInputProps {
   placeholder: string;
 }
 
-export const LoginFormInput: FC<LoginFormInputProps> = ({
+const LoginFormInputMemo: FC<LoginFormInputProps> = ({
   id,
   ...props
 }): JSX.Element => {
@@ -27,3 +27,5 @@ export const LoginFormInput: FC<LoginFormInputProps> = ({
     />
   );
 };
+
+export const LoginFormInput = memo(LoginFormInputMemo);

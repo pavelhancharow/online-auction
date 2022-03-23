@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormBox } from '../FormStyles';
 import { IListFutureForm } from 'src/models/IForms';
@@ -10,7 +10,7 @@ interface FutureFormProps {
   currentLots: ILot[];
 }
 
-export const ListFutureForm: FC<FutureFormProps> = ({
+const ListFutureFormMemo: FC<FutureFormProps> = ({
   currentLots,
 }): JSX.Element => {
   const methods = useForm<IListFutureForm>({ mode: 'onBlur' });
@@ -26,3 +26,5 @@ export const ListFutureForm: FC<FutureFormProps> = ({
     </FormProvider>
   );
 };
+
+export const ListFutureForm = memo(ListFutureFormMemo);

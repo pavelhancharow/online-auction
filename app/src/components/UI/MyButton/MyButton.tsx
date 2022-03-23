@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, memo, ReactNode } from 'react';
 import { MyBtn } from './MyButtonStyle';
 
 type BtnType = 'button' | 'submit' | 'reset';
@@ -10,7 +10,7 @@ interface MyButtonProps {
   isLink?: boolean;
 }
 
-export const MyButton: FC<MyButtonProps> = ({
+const MyButtonMemo: FC<MyButtonProps> = ({
   children,
   type = 'button',
   isLink = false,
@@ -22,3 +22,5 @@ export const MyButton: FC<MyButtonProps> = ({
     </MyBtn>
   );
 };
+
+export const MyButton = memo(MyButtonMemo);

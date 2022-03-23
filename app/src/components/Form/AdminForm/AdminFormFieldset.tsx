@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { MyFieldset } from '../../UI/MyFieldset';
 import { IAdminForm } from 'src/models/IForms';
@@ -8,7 +8,7 @@ interface AdminFieldsetProps {
   time: string;
 }
 
-export const AdminFormFieldset: FC<AdminFieldsetProps> = ({
+const AdminFormFieldsetMemo: FC<AdminFieldsetProps> = ({
   time,
 }): JSX.Element => {
   const { register } = useFormContext<IAdminForm>();
@@ -37,3 +37,5 @@ export const AdminFormFieldset: FC<AdminFieldsetProps> = ({
     </AdminFieldsetBox>
   );
 };
+
+export const AdminFormFieldset = memo(AdminFormFieldsetMemo);

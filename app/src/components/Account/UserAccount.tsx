@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from 'src/hooks/redux';
 import { AccountInfoBox, AccountLotsBox } from './AccountStyles';
 
-export const UserAccount: FC = (): JSX.Element => {
+const UserAccountMemo: FC = (): JSX.Element => {
   const { currentUser } = useAppSelector(({ userReducer }) => userReducer);
   const { firstname, lastname, phone, email, id, lots } = currentUser;
 
@@ -44,3 +44,5 @@ export const UserAccount: FC = (): JSX.Element => {
     </>
   );
 };
+
+export const UserAccount = memo(UserAccountMemo);

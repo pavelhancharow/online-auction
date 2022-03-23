@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, useEffect, useMemo } from 'react';
+import { FC, useEffect, memo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useAppDispatch } from 'src/hooks/redux';
 import { AdminFormInputs } from 'src/data/FormInputs';
@@ -11,20 +11,20 @@ import { IAdminForm } from 'src/models/IForms';
 import { getLocalTime } from 'src/services/getLocalTime';
 import { createLot } from 'src/store/reducers/UserSlice/actionCreator';
 
-export const AdminForm: FC = (): JSX.Element => {
+const time = getLocalTime();
+
+const defaultValues = {
+  title: '',
+  description: '',
+  img: '',
+  start: time,
+  finish: time,
+  rate: '',
+};
+
+const AdminFormMemo: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const time = useMemo(() => getLocalTime(), []);
-  const methods = useForm<IAdminForm>({
-    defaultValues: {
-      title: '',
-      description: '',
-      img: '',
-      start: time,
-      finish: time,
-      rate: '',
-    },
-    mode: 'onBlur',
-  });
+  const methods = useForm<IAdminForm>({ defaultValues, mode: 'onBlur' });
 
   const { handleSubmit, reset, formState } = methods;
   const { isSubmitSuccessful } = formState;
@@ -35,14 +35,8 @@ export const AdminForm: FC = (): JSX.Element => {
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      reset({
-        title: '',
-        description: '',
-        img: '',
-        start: getLocalTime(),
-        finish: getLocalTime(),
-        rate: '',
-      });
+      const time = getLocalTime();
+      reset({ ...defaultValues, start: time, finish: time });
     }
   }, [isSubmitSuccessful]);
 
@@ -58,3 +52,5 @@ export const AdminForm: FC = (): JSX.Element => {
     </FormProvider>
   );
 };
+
+export const AdminForm = memo(AdminFormMemo);

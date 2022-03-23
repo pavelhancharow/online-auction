@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from 'src/hooks/redux';
@@ -11,12 +11,11 @@ import { LoginFormBox } from './LoginFormStyles';
 import { ILoginForm } from 'src/models/IForms';
 import { setUser } from 'src/store/reducers/UserSlice/actionCreator';
 
-export const LoginForm: FC = (): JSX.Element => {
+const defaultValues = { email: '', password: '', remember: false };
+
+export const LoginFormMemo: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const methods = useForm<ILoginForm>({
-    defaultValues: { email: '', password: '', remember: false },
-    mode: 'onBlur',
-  });
+  const methods = useForm<ILoginForm>({ defaultValues, mode: 'onBlur' });
 
   const { handleSubmit, register } = methods;
 
@@ -45,3 +44,5 @@ export const LoginForm: FC = (): JSX.Element => {
     </FormProvider>
   );
 };
+
+export const LoginForm = memo(LoginFormMemo);

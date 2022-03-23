@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { FC, useEffect } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { FC, memo, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import { MyButton } from '../UI/MyButton';
 import { MyLoader } from '../UI/MyLoader';
@@ -12,7 +12,7 @@ import { AuctionLotInfo } from './AuctionLotInfo';
 import { ModalAuctionBox } from '../UI/MyModal/ModalFormStyles';
 import { AuctionLotBtnsAdmin } from './AuctionLotBtnsAdmin';
 
-export const AuctionLot: FC = (): JSX.Element => {
+const AuctionLotMemo: FC = (): JSX.Element => {
   const { lotId } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -47,3 +47,5 @@ export const AuctionLot: FC = (): JSX.Element => {
     </ModalAuctionBox>
   );
 };
+
+export const AuctionLot = memo(AuctionLotMemo);
