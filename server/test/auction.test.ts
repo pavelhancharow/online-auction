@@ -109,7 +109,6 @@ describe('auction', () => {
         const { statusCode, body } = await supertest(app)
           .put(`/auction/lots`)
           .send({ data });
-        console.log(body.lots.activeLots[0]);
 
         expect(statusCode).toBe(200);
         expect(body.message).toBe('Auction lots activated');
