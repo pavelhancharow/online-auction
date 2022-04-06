@@ -12,6 +12,7 @@ export enum ErrorCode {
   FieldValidation = 'FieldValidation',
   UnknownError = 'UnknownError',
   NoAccessRights = 'NoAccessRights',
+  InvalidPath = 'InvalidPath',
 }
 
 export const ErrorMessage: ErrorType = {
@@ -24,4 +25,5 @@ export const ErrorMessage: ErrorType = {
   [ErrorCode.FieldValidation]: 'Field value is incorrect',
   [ErrorCode.UnknownError]: 'Something is wrong',
   [ErrorCode.NoAccessRights]: 'No access rights to change password',
+  [ErrorCode.InvalidPath]: 'Invalid route path',
 };
