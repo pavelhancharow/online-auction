@@ -3,7 +3,6 @@ import { ErrorCode, ErrorException } from '../../error';
 import { User } from '../../models';
 import { Lot } from '../../models/Lot';
 import { filterLots } from '../../services/filterLots';
-import { getTime } from '../../services/getTime';
 import { sendEmail } from '../../services/sendEmail';
 
 export const getLotsService = async () => {
@@ -48,12 +47,13 @@ export const setActiveLotsByIdService = async (data: string[]) => {
 };
 
 export const cronJobService = cron.schedule('* * * * *', async () => {
-  const time = getTime();
+  const localTime = new Date().toString().slice(0, -5);
+  const time = new Date(localTime);
 
-  await Lot.updateMany({ start: { $in: time } }, { $set: { active: true } });
+  await Lot.updateMany({ start: { $lte: time } }, { $set: { active: true } });
 
   await Lot.updateMany(
-    { finish: { $in: time } },
+    { finish: { $lte: time } },
     { $set: { active: false, completed: true } }
   );
 

@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 export interface IUser extends Document {
   firstname: string;
@@ -18,8 +18,8 @@ export interface ILot extends Document {
   title: string;
   description: string;
   img: string;
-  start: string;
-  finish: string;
+  start: typeof Date;
+  finish: typeof Date;
   active: boolean;
   completed: boolean;
   rate: number;
