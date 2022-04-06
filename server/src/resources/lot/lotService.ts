@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { User } from '../../models';
 import { Lot } from '../../models/Lot';
+import { sendEmail } from '../../services/sendEmail';
 
 export const connect = async (_id: string) => {
   const user = await User.findOne({ _id });
@@ -45,6 +46,10 @@ export const finishAuction = async (data: { lotId: string }) => {
     { $push: { lots: lotId } },
     { new: true }
   );
+
+  if (user) {
+    sendEmail(user.email, lotId);
+  }
 
   return {
     lot,
