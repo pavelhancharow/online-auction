@@ -1,4 +1,5 @@
 import { FC, memo } from 'react';
+import { getLocalTime } from 'src/services/getLocalTime';
 import { ListLotBox, ListLotImg, ListLotInfo } from './ListLotStyles';
 
 interface ListLotProps {
@@ -23,10 +24,10 @@ const ListLotMemo: FC<ListLotProps> = ({
         <h3>{title}</h3>
         <ListLotInfo>
           <li>
-            <b>Auction start:</b> {start}
+            <b>Auction start:</b> {getLocalTime(start)}
           </li>
           <li>
-            <b>Auction finish:</b> {finish}
+            <b>Auction finish:</b> {getLocalTime(finish)}
           </li>
           <li>
             <b>Сurrent rate:</b> {rate}$

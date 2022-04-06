@@ -74,11 +74,14 @@ export const createLot = createAsyncThunk(
     try {
       const { img, start, finish } = data;
 
-      const startDate = new Date(start!).getTime();
-      const finishDate = new Date(finish!).getTime();
+      const startDate = new Date(start!);
+      const finishDate = new Date(finish!);
+
+      const startDateTime = startDate.getTime();
+      const finishDateTime = finishDate.getTime();
       const currentDate = new Date().getTime();
 
-      if (currentDate >= startDate || startDate >= finishDate)
+      if (currentDate >= startDateTime || startDateTime >= finishDateTime)
         return 'Please, select correct time';
 
       const file =
@@ -87,6 +90,8 @@ export const createLot = createAsyncThunk(
       const response = await $host.post('/admin/create', {
         ...data,
         img: file,
+        start: startDate,
+        finish: finishDate,
       });
 
       return response.data.message;

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useAppSelector } from 'src/hooks/redux';
+import { getLocalTime } from 'src/services/getLocalTime';
 import { AuctionLotInfoBox } from './AuctionLotStyles';
 
 export const AuctionLotInfo: FC = (): JSX.Element => {
@@ -14,11 +15,11 @@ export const AuctionLotInfo: FC = (): JSX.Element => {
       </p>
       <span>
         <b>Lot start date: </b>
-        {start}
+        {getLocalTime(start)}
       </span>
       <span>
         <b>Lot finish date: </b>
-        {finish}
+        {getLocalTime(finish)}
       </span>
       <span>
         <b>Current user: </b>
